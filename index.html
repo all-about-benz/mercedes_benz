@@ -6,258 +6,338 @@
   <title>벤츠의 모든 것 | 이충기 차장</title>
   <meta name="description" content="벤츠 의정부 전시장 이충기 차장. 직판제 이후 벤츠 구매전략, 전국 재고 기반 빠른 출고, 출고 이후 관리까지 안내드립니다." />
   <style>
+    :root {
+      --bg: #030407;
+      --panel: rgba(255,255,255,.055);
+      --panel-strong: rgba(255,255,255,.09);
+      --line: rgba(255,255,255,.105);
+      --text: #f6f3ed;
+      --muted: #aaa59b;
+      --gold: #b9a36f;
+      --gold2: #ead9a7;
+      --silver: #d7d9dd;
+    }
+
     * { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
     body {
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans KR", sans-serif;
-      background: #05070b;
-      color: #f4f1ea;
-      line-height: 1.7;
+      background:
+        radial-gradient(circle at 70% 8%, rgba(185,163,111,.14), transparent 26%),
+        radial-gradient(circle at 8% 35%, rgba(255,255,255,.06), transparent 22%),
+        var(--bg);
+      color: var(--text);
+      line-height: 1.72;
       word-break: keep-all;
+      overflow-x: hidden;
     }
     a { color: inherit; text-decoration: none; }
-    .container { width: min(1140px, 90%); margin: 0 auto; }
+    .container { width: min(1180px, 90%); margin: 0 auto; }
 
     header {
       position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 20;
+      inset: 0 0 auto 0;
+      z-index: 50;
       padding: 18px 0;
-      background: linear-gradient(to bottom, rgba(5,7,11,.92), rgba(5,7,11,.55));
-      backdrop-filter: blur(18px);
-      border-bottom: 1px solid rgba(255,255,255,.08);
+      background: linear-gradient(to bottom, rgba(3,4,7,.92), rgba(3,4,7,.58));
+      border-bottom: 1px solid rgba(255,255,255,.075);
+      backdrop-filter: blur(22px);
     }
-    .nav { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
-    .logo { font-weight: 800; letter-spacing: .02em; font-size: 15px; text-transform: uppercase; }
-    .logo span { color: #b8a77a; }
-    .nav a { font-size: 14px; color: #d8d1c2; }
-    .nav-right { display: flex; gap: 18px; align-items: center; }
+    .nav { display: flex; align-items: center; justify-content: space-between; gap: 18px; }
+    .brand { display: flex; flex-direction: column; line-height: 1.15; }
+    .brand strong { font-size: 15px; letter-spacing: .16em; font-weight: 900; }
+    .brand span { font-size: 12px; color: var(--muted); letter-spacing: .04em; margin-top: 3px; }
+    .nav-menu { display: flex; align-items: center; gap: 24px; color: #d4d0c8; font-size: 14px; }
+    .nav-menu a { opacity: .82; transition: .2s ease; }
+    .nav-menu a:hover { opacity: 1; color: #fff; }
     .nav-cta {
-      border: 1px solid rgba(184,167,122,.55);
-      color: #f6ead1 !important;
-      padding: 9px 15px;
+      padding: 10px 16px;
+      border: 1px solid rgba(234,217,167,.42);
       border-radius: 999px;
-      background: rgba(184,167,122,.08);
+      background: rgba(185,163,111,.1);
+      color: #f8ead0 !important;
+      font-weight: 800;
     }
 
     .hero {
       min-height: 100vh;
+      padding: 128px 0 86px;
       display: flex;
       align-items: center;
-      padding: 120px 0 80px;
       position: relative;
-      overflow: hidden;
-      background:
-        radial-gradient(circle at 78% 35%, rgba(184,167,122,.22), transparent 22%),
-        radial-gradient(circle at 70% 60%, rgba(255,255,255,.08), transparent 18%),
-        linear-gradient(120deg, rgba(5,7,11,.98) 0%, rgba(5,7,11,.92) 45%, rgba(16,18,24,.88) 100%);
+      isolation: isolate;
     }
-    .hero:after {
+    .hero:before {
       content: "";
       position: absolute;
-      inset: auto 0 0 0;
-      height: 180px;
-      background: linear-gradient(to bottom, transparent, #05070b);
+      inset: 0;
+      background:
+        linear-gradient(90deg, rgba(3,4,7,1) 0%, rgba(3,4,7,.92) 42%, rgba(3,4,7,.52) 100%),
+        radial-gradient(circle at 72% 38%, rgba(234,217,167,.16), transparent 23%),
+        radial-gradient(circle at 78% 66%, rgba(255,255,255,.085), transparent 22%);
+      z-index: -2;
     }
-    .hero-content { position: relative; z-index: 2; max-width: 720px; }
+    .hero:after {
+      content: "BENZ ALL ABOUT";
+      position: absolute;
+      right: -34px;
+      bottom: 34px;
+      font-size: clamp(62px, 12vw, 160px);
+      line-height: 1;
+      font-weight: 950;
+      letter-spacing: -0.08em;
+      color: rgba(255,255,255,.035);
+      z-index: -1;
+      white-space: nowrap;
+    }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.05fr .95fr;
+      gap: 54px;
+      align-items: center;
+    }
     .eyebrow {
       display: inline-flex;
       align-items: center;
-      gap: 10px;
-      color: #b8a77a;
-      font-size: 14px;
-      letter-spacing: .08em;
+      gap: 12px;
+      color: var(--gold2);
+      font-size: 13px;
+      letter-spacing: .16em;
       text-transform: uppercase;
-      margin-bottom: 22px;
-      font-weight: 700;
+      font-weight: 900;
+      margin-bottom: 24px;
     }
-    .eyebrow:before { content:""; width: 38px; height: 1px; background: #b8a77a; display: inline-block; }
+    .eyebrow:before { content: ""; width: 46px; height: 1px; background: var(--gold); }
     h1 {
-      font-size: clamp(44px, 7vw, 82px);
-      line-height: 1.04;
-      letter-spacing: -0.07em;
-      margin-bottom: 26px;
-      font-weight: 850;
+      font-size: clamp(46px, 6.8vw, 86px);
+      line-height: 1.02;
+      letter-spacing: -0.075em;
+      font-weight: 950;
+      margin-bottom: 28px;
     }
     .hero-text {
-      font-size: clamp(18px, 2vw, 22px);
-      color: #d8d1c2;
-      max-width: 640px;
-      margin-bottom: 36px;
+      max-width: 650px;
+      color: #d8d2c5;
+      font-size: clamp(18px, 1.7vw, 22px);
+      margin-bottom: 38px;
     }
     .btn-row { display: flex; flex-wrap: wrap; gap: 12px; }
     .btn {
+      min-height: 56px;
+      padding: 0 23px;
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      min-height: 54px;
-      padding: 0 22px;
       border-radius: 999px;
-      font-weight: 800;
+      font-weight: 900;
       font-size: 15px;
       transition: .22s ease;
     }
-    .btn:hover { transform: translateY(-2px); }
-    .btn-primary { background: #f4f1ea; color: #05070b; }
-    .btn-gold { background: linear-gradient(135deg, #b8a77a, #e4d4a5); color: #05070b; }
-    .btn-line { border: 1px solid rgba(255,255,255,.22); color: #f4f1ea; background: rgba(255,255,255,.05); }
+    .btn:hover { transform: translateY(-2px); filter: brightness(1.05); }
+    .btn-gold { background: linear-gradient(135deg, var(--gold), var(--gold2)); color: #06070a; box-shadow: 0 18px 45px rgba(185,163,111,.18); }
+    .btn-light { background: var(--text); color: #05070a; }
+    .btn-line { border: 1px solid rgba(255,255,255,.22); background: rgba(255,255,255,.045); color: var(--text); }
 
-    .profile-mini {
-      margin-top: 36px;
-      display: inline-flex;
-      align-items: center;
-      gap: 14px;
-      padding: 12px 18px 12px 12px;
-      border-radius: 999px;
-      background: rgba(255,255,255,.075);
-      border: 1px solid rgba(255,255,255,.12);
-      backdrop-filter: blur(16px);
-    }
-    .profile-mini img {
-      width: 54px;
-      height: 54px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 2px solid rgba(184,167,122,.75);
-    }
-    .profile-mini strong { display: block; font-size: 16px; color: #fff; }
-    .profile-mini span { display: block; font-size: 13px; color: #aaa292; }
-
-    .trust-strip {
+    .profile-frame {
       position: relative;
-      z-index: 3;
-      margin-top: -70px;
+      min-height: 650px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
+    .profile-frame:before {
+      content: "";
+      position: absolute;
+      width: 86%;
+      height: 86%;
+      border-radius: 40px;
+      background: linear-gradient(145deg, rgba(185,163,111,.18), rgba(255,255,255,.04));
+      border: 1px solid rgba(255,255,255,.12);
+      transform: rotate(-3deg);
+    }
+    .profile-card {
+      position: relative;
+      width: min(430px, 100%);
+      border-radius: 38px;
+      overflow: hidden;
+      background: #101218;
+      border: 1px solid rgba(255,255,255,.13);
+      box-shadow: 0 34px 100px rgba(0,0,0,.46);
+    }
+    .profile-card img {
+      display: block;
+      width: 100%;
+      height: 560px;
+      object-fit: cover;
+      object-position: center top;
+      filter: saturate(.94) contrast(1.05);
+    }
+    .profile-caption {
+      position: absolute;
+      inset: auto 18px 18px 18px;
+      padding: 18px;
+      border-radius: 24px;
+      background: rgba(5,7,11,.72);
+      border: 1px solid rgba(255,255,255,.13);
+      backdrop-filter: blur(20px);
+    }
+    .profile-caption strong { display: block; font-size: 24px; letter-spacing: -0.04em; }
+    .profile-caption span { display: block; color: var(--muted); font-size: 14px; margin-top: 2px; }
+
+    .trust-strip { margin-top: -48px; position: relative; z-index: 5; }
     .trust-box {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      border: 1px solid rgba(255,255,255,.1);
-      background: rgba(12,14,20,.82);
-      backdrop-filter: blur(18px);
-      border-radius: 28px;
+      background: rgba(13,15,21,.78);
+      border: 1px solid var(--line);
+      border-radius: 34px;
       overflow: hidden;
-      box-shadow: 0 30px 90px rgba(0,0,0,.35);
+      box-shadow: 0 34px 100px rgba(0,0,0,.34);
+      backdrop-filter: blur(20px);
     }
-    .trust-item { padding: 28px; border-right: 1px solid rgba(255,255,255,.08); }
+    .trust-item { padding: 30px 28px; border-right: 1px solid rgba(255,255,255,.075); }
     .trust-item:last-child { border-right: 0; }
-    .trust-item strong { display: block; font-size: 24px; color: #fff; margin-bottom: 4px; }
-    .trust-item span { color: #aaa292; font-size: 14px; }
+    .trust-item strong { display: block; font-size: 27px; letter-spacing: -0.04em; }
+    .trust-item span { color: var(--muted); font-size: 14px; }
 
-    section { padding: 95px 0; }
-    .section-head { margin-bottom: 42px; }
-    .kicker { color: #b8a77a; font-size: 14px; letter-spacing: .08em; text-transform: uppercase; font-weight: 800; margin-bottom: 10px; }
-    .section-title { font-size: clamp(32px, 4vw, 54px); line-height: 1.15; letter-spacing: -0.055em; margin-bottom: 16px; }
-    .section-desc { color: #aaa292; font-size: 18px; max-width: 760px; }
+    section { padding: 104px 0; }
+    .section-head { margin-bottom: 46px; }
+    .kicker { color: var(--gold2); font-size: 13px; letter-spacing: .16em; text-transform: uppercase; font-weight: 900; margin-bottom: 12px; }
+    .section-title { font-size: clamp(34px, 4.6vw, 58px); line-height: 1.12; letter-spacing: -0.06em; font-weight: 950; margin-bottom: 18px; }
+    .section-desc { color: var(--muted); font-size: 18px; max-width: 780px; }
 
     .feature-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
     .feature {
-      min-height: 250px;
-      border: 1px solid rgba(255,255,255,.1);
-      background: linear-gradient(145deg, rgba(255,255,255,.08), rgba(255,255,255,.025));
-      border-radius: 30px;
-      padding: 30px;
+      min-height: 286px;
+      padding: 32px;
+      border-radius: 34px;
+      border: 1px solid var(--line);
+      background: linear-gradient(145deg, rgba(255,255,255,.085), rgba(255,255,255,.025));
       position: relative;
       overflow: hidden;
     }
-    .feature:after {
-      content:"";
-      position:absolute;
-      width:120px; height:120px;
-      border-radius:50%;
-      background: rgba(184,167,122,.13);
-      right:-45px; bottom:-45px;
+    .feature:before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 88% 88%, rgba(185,163,111,.16), transparent 24%);
+      pointer-events: none;
     }
-    .feature .num { color: #b8a77a; font-weight: 900; margin-bottom: 34px; }
-    .feature h3 { font-size: 24px; margin-bottom: 12px; letter-spacing: -0.03em; }
-    .feature p { color: #aaa292; font-size: 15px; }
+    .feature .num { position: relative; color: var(--gold2); font-weight: 950; margin-bottom: 46px; }
+    .feature h3 { position: relative; font-size: 25px; letter-spacing: -0.04em; margin-bottom: 12px; }
+    .feature p { position: relative; color: var(--muted); font-size: 15px; }
 
-    .model-showcase {
-      display: grid;
-      grid-template-columns: 1.05fr .95fr;
-      gap: 22px;
-      align-items: stretch;
-    }
+    .model-showcase { display: grid; grid-template-columns: 1.05fr .95fr; gap: 20px; align-items: stretch; }
     .big-card {
-      min-height: 520px;
-      border-radius: 34px;
-      overflow: hidden;
-      border: 1px solid rgba(255,255,255,.1);
-      background:
-        linear-gradient(to top, rgba(5,7,11,.94), rgba(5,7,11,.18)),
-        radial-gradient(circle at 70% 35%, rgba(184,167,122,.24), transparent 22%),
-        linear-gradient(135deg, #151922, #07090f);
+      min-height: 550px;
+      border-radius: 38px;
+      padding: 40px;
       display: flex;
       align-items: flex-end;
-      padding: 36px;
+      border: 1px solid var(--line);
+      background:
+        linear-gradient(to top, rgba(3,4,7,.95), rgba(3,4,7,.26)),
+        radial-gradient(circle at 72% 32%, rgba(185,163,111,.23), transparent 24%),
+        linear-gradient(135deg, #161922, #06070b 68%);
+      overflow: hidden;
+      position: relative;
     }
-    .big-card h3 { font-size: 42px; line-height: 1.1; letter-spacing: -0.05em; margin-bottom: 12px; }
-    .big-card p { color: #d8d1c2; max-width: 520px; }
+    .big-card:after {
+      content: "GLE";
+      position: absolute;
+      right: -6px;
+      top: 40px;
+      font-size: 150px;
+      font-weight: 950;
+      letter-spacing: -0.1em;
+      color: rgba(255,255,255,.045);
+    }
+    .big-card h3 { font-size: clamp(38px, 4.6vw, 56px); line-height: 1.05; letter-spacing: -0.07em; margin-bottom: 14px; }
+    .big-card p { color: #d6d0c4; max-width: 560px; }
     .model-list { display: grid; gap: 14px; }
     .model {
-      padding: 24px;
-      border-radius: 26px;
-      background: rgba(255,255,255,.055);
-      border: 1px solid rgba(255,255,255,.1);
+      min-height: 98px;
       display: flex;
       justify-content: space-between;
-      gap: 16px;
       align-items: center;
+      gap: 18px;
+      padding: 24px 26px;
+      border-radius: 30px;
+      background: rgba(255,255,255,.05);
+      border: 1px solid var(--line);
+      transition: .22s ease;
     }
-    .model h3 { font-size: 22px; letter-spacing: -0.03em; }
-    .model p { color: #aaa292; font-size: 14px; margin-top: 4px; }
-    .model small { color: #b8a77a; white-space: nowrap; }
+    .model:hover { background: rgba(255,255,255,.075); transform: translateX(3px); }
+    .model h3 { font-size: 23px; letter-spacing: -0.04em; }
+    .model p { color: var(--muted); font-size: 14px; margin-top: 3px; }
+    .model small { color: var(--gold2); white-space: nowrap; font-weight: 800; font-size: 12px; letter-spacing: .08em; text-transform: uppercase; }
 
     .process { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; counter-reset: step; }
     .step {
-      padding: 26px;
-      min-height: 210px;
-      border-radius: 28px;
-      border: 1px solid rgba(255,255,255,.1);
-      background: rgba(255,255,255,.045);
+      min-height: 224px;
+      padding: 28px;
+      border-radius: 32px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.047);
     }
     .step:before {
       counter-increment: step;
       content: "0" counter(step);
-      color: #b8a77a;
-      font-weight: 900;
       display: block;
-      margin-bottom: 38px;
+      color: var(--gold2);
+      font-weight: 950;
+      margin-bottom: 44px;
     }
-    .step h3 { font-size: 22px; margin-bottom: 8px; }
-    .step p { color: #aaa292; font-size: 14px; }
+    .step h3 { font-size: 23px; letter-spacing: -0.04em; margin-bottom: 8px; }
+    .step p { color: var(--muted); font-size: 14px; }
 
-    .cta {
-      padding: 0 0 100px;
+    .consultant {
+      display: grid;
+      grid-template-columns: .85fr 1.15fr;
+      gap: 26px;
+      align-items: center;
+      padding: 36px;
+      border-radius: 42px;
+      background: linear-gradient(145deg, rgba(255,255,255,.08), rgba(255,255,255,.025));
+      border: 1px solid var(--line);
     }
+    .consultant img {
+      width: 100%;
+      max-height: 620px;
+      object-fit: cover;
+      object-position: center top;
+      border-radius: 32px;
+      border: 1px solid rgba(255,255,255,.12);
+    }
+    .consultant h2 { font-size: clamp(34px, 4vw, 54px); line-height: 1.13; letter-spacing: -0.06em; margin-bottom: 18px; }
+    .consultant p { color: #d4cec2; font-size: 18px; margin-bottom: 26px; }
+    .signature { color: var(--gold2); font-weight: 900; letter-spacing: .08em; text-transform: uppercase; font-size: 13px; margin-bottom: 12px; }
+
+    .cta { padding-top: 0; }
     .cta-box {
-      border-radius: 38px;
-      padding: 58px 34px;
+      border-radius: 44px;
+      padding: 64px 34px;
       text-align: center;
       background:
-        linear-gradient(135deg, rgba(184,167,122,.26), rgba(255,255,255,.06)),
-        radial-gradient(circle at top, rgba(255,255,255,.12), transparent 45%);
-      border: 1px solid rgba(184,167,122,.28);
-      box-shadow: 0 35px 110px rgba(0,0,0,.35);
+        radial-gradient(circle at top, rgba(255,255,255,.12), transparent 42%),
+        linear-gradient(135deg, rgba(185,163,111,.28), rgba(255,255,255,.055));
+      border: 1px solid rgba(234,217,167,.24);
+      box-shadow: 0 38px 120px rgba(0,0,0,.36);
     }
-    .cta-box h2 { font-size: clamp(34px, 5vw, 62px); line-height: 1.1; letter-spacing: -0.06em; margin-bottom: 18px; }
-    .cta-box p { color: #d8d1c2; font-size: 18px; margin-bottom: 28px; }
+    .cta-box h2 { font-size: clamp(36px, 5vw, 64px); line-height: 1.08; letter-spacing: -0.07em; margin-bottom: 18px; }
+    .cta-box p { color: #d9d2c6; font-size: 18px; margin-bottom: 30px; }
 
-    footer {
-      border-top: 1px solid rgba(255,255,255,.08);
-      padding: 34px 0;
-      color: #827c70;
-      font-size: 14px;
-    }
-    .footer-grid { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 18px; }
+    footer { border-top: 1px solid rgba(255,255,255,.08); padding: 36px 0; color: #878176; font-size: 14px; }
+    .footer-grid { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 20px; }
+    .footer-grid strong { color: #cfc8bd; }
 
     .floating {
       position: fixed;
-      left: 50%;
+      left: 50%; bottom: 18px;
       transform: translateX(-50%);
-      bottom: 18px;
-      z-index: 30;
-      display: none;
+      z-index: 80;
       width: min(560px, 92%);
+      display: none;
       gap: 10px;
     }
     .floating a {
@@ -265,58 +345,86 @@
       text-align: center;
       padding: 14px 10px;
       border-radius: 999px;
-      font-weight: 800;
-      background: #f4f1ea;
-      color: #05070b;
-      box-shadow: 0 12px 40px rgba(0,0,0,.35);
+      font-weight: 950;
+      box-shadow: 0 14px 42px rgba(0,0,0,.36);
     }
-    .floating a:last-child { background: #b8a77a; }
+    .floating a:first-child { background: var(--text); color: #05070a; }
+    .floating a:last-child { background: linear-gradient(135deg, var(--gold), var(--gold2)); color: #05070a; }
 
-    @media (max-width: 900px) {
-      .nav-right a:not(.nav-cta) { display: none; }
-      .hero { min-height: 92vh; background-position: center; }
-      .trust-box, .feature-grid, .model-showcase, .process { grid-template-columns: 1fr; }
-      .trust-item { border-right: 0; border-bottom: 1px solid rgba(255,255,255,.08); }
+    @media (max-width: 980px) {
+      .nav-menu a:not(.nav-cta) { display: none; }
+      .hero { padding-top: 118px; min-height: auto; }
+      .hero-grid, .trust-box, .feature-grid, .model-showcase, .process, .consultant { grid-template-columns: 1fr; }
+      .profile-frame { min-height: auto; margin-top: 22px; }
+      .profile-frame:before { width: 90%; height: 92%; }
+      .profile-card { width: min(380px, 100%); }
+      .profile-card img { height: 510px; }
+      .trust-strip { margin-top: 10px; }
+      .trust-item { border-right: 0; border-bottom: 1px solid rgba(255,255,255,.075); }
       .trust-item:last-child { border-bottom: 0; }
-      .big-card { min-height: 420px; padding: 28px; }
-      .big-card h3 { font-size: 34px; }
-      section { padding: 74px 0; }
+      .big-card { min-height: 420px; padding: 30px; }
+      section { padding: 78px 0; }
+      .consultant { padding: 22px; }
       .floating { display: flex; }
       footer { padding-bottom: 92px; }
+    }
+
+    @media (max-width: 520px) {
+      .container { width: 91%; }
+      .brand strong { font-size: 13px; }
+      .brand span { font-size: 11px; }
+      .nav-cta { padding: 9px 12px; font-size: 13px; }
+      h1 { font-size: 43px; }
+      .hero-text { font-size: 17px; }
+      .btn { width: 100%; }
+      .profile-card img { height: 455px; }
+      .profile-caption strong { font-size: 22px; }
+      .trust-item { padding: 24px; }
+      .model { align-items: flex-start; flex-direction: column; }
+      .cta-box { padding: 48px 22px; }
     }
   </style>
 </head>
 <body>
   <header>
     <div class="container nav">
-      <div class="logo">BENZ <span>ALL ABOUT</span></div>
-      <div class="nav-right">
+      <a href="#" class="brand">
+        <strong>BENZ ALL ABOUT</strong>
+        <span>Mercedes-Benz Consultant</span>
+      </a>
+      <nav class="nav-menu">
         <a href="#why">구매전략</a>
         <a href="#models">추천모델</a>
+        <a href="#consultant">컨설턴트</a>
         <a href="#process">상담과정</a>
         <a class="nav-cta" href="tel:010-4615-1658">상담 연결</a>
-      </div>
+      </nav>
     </div>
   </header>
 
   <main>
     <section class="hero">
-      <div class="container hero-content">
-        <div class="eyebrow">Mercedes-Benz Motor One</div>
-        <h1>벤츠 구매는<br>조건보다<br>사람을 먼저 봅니다.</h1>
-        <p class="hero-text">
-          벤츠 의정부 전시장 이충기 차장입니다. 직판제 이후 달라진 구매 방식, 전국 재고 기반 빠른 출고, 그리고 출고 이후 관리까지 고객 입장에서 정확하게 안내드립니다.
-        </p>
-        <div class="btn-row">
-          <a class="btn btn-gold" href="https://open.kakao.com/o/svSqhucd" target="_blank">카카오톡 상담하기</a>
-          <a class="btn btn-primary" href="tel:010-4615-1658">전화 상담하기</a>
-          <a class="btn btn-line" href="https://www.instagram.com/benz_all_about" target="_blank">인스타그램 보기</a>
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <div class="eyebrow">Mercedes-Benz Motor One Uijeongbu</div>
+          <h1>벤츠 구매,<br>이제는 사람을<br>먼저 봅니다.</h1>
+          <p class="hero-text">
+            직판제 이후 달라진 벤츠 구매 방식. 전국 재고 기반의 빠른 출고, 고객 상황에 맞는 구매 방식, 그리고 출고 이후 관리까지 이충기 차장이 직접 안내드립니다.
+          </p>
+          <div class="btn-row">
+            <a class="btn btn-gold" href="https://open.kakao.com/o/svSqhucd" target="_blank">카카오톡 상담하기</a>
+            <a class="btn btn-light" href="tel:010-4615-1658">전화 상담하기</a>
+            <a class="btn btn-line" href="https://www.youtube.com/@all_about_benz" target="_blank">유튜브 보기</a>
+          </div>
         </div>
-        <div class="profile-mini">
-          <img src="profile.jpg" alt="이충기 차장 프로필 사진">
-          <div>
-            <strong>이충기 차장</strong>
-            <span>Mercedes-Benz Motor One Uijeongbu</span>
+
+        <div class="profile-frame">
+          <div class="profile-card">
+            <img src="profile.jpg" alt="벤츠 의정부 전시장 이충기 차장 프로필 사진">
+            <div class="profile-caption">
+              <strong>이충기 차장</strong>
+              <span>벤츠 공식 인증 세일즈 · Benz All About 운영</span>
+            </div>
           </div>
         </div>
       </div>
@@ -326,7 +434,7 @@
       <div class="trust-box">
         <div class="trust-item"><strong>5년차</strong><span>벤츠 세일즈 컨설턴트</span></div>
         <div class="trust-item"><strong>TOP5</strong><span>매년 상위권 실적</span></div>
-        <div class="trust-item"><strong>전국 재고</strong><span>빠른 차량 확인</span></div>
+        <div class="trust-item"><strong>200대+</strong><span>누적 판매 경험</span></div>
         <div class="trust-item"><strong>출고 후</strong><span>지속적인 고객 관리</span></div>
       </div>
     </div>
@@ -335,26 +443,26 @@
       <div class="container">
         <div class="section-head">
           <div class="kicker">Why Now</div>
-          <h2 class="section-title">직판제 이후,<br>벤츠 구매 기준이 달라졌습니다.</h2>
+          <h2 class="section-title">직판제 이후,<br>벤츠 구매 기준은 더 명확해졌습니다.</h2>
           <p class="section-desc">
-            이제는 단순히 할인 숫자만 비교하기보다 재고 확보, 출고 시점, 금융 방식, 사후 케어까지 함께 봐야 좋은 선택을 할 수 있습니다.
+            가격만 보는 상담이 아니라 재고 확보, 출고 시점, 금융 방식, 차량 선택의 이유, 사후 케어까지 함께 봐야 좋은 선택을 할 수 있습니다.
           </p>
         </div>
         <div class="feature-grid">
           <div class="feature">
             <div class="num">01</div>
             <h3>전국 재고 기반 상담</h3>
-            <p>원하시는 모델, 색상, 옵션, 출고 가능 일정을 빠르게 확인해드립니다.</p>
+            <p>원하시는 모델, 색상, 옵션, 출고 가능 일정을 전국 재고 기준으로 빠르게 확인해드립니다.</p>
           </div>
           <div class="feature">
             <div class="num">02</div>
-            <h3>구매 방식 비교</h3>
-            <p>현금, 할부, 리스, 법인 구매까지 고객 상황에 맞춰 현실적으로 비교합니다.</p>
+            <h3>구매 방식 설계</h3>
+            <p>현금, 할부, 리스, 법인 구매까지 고객 상황에 맞춰 부담과 효율을 함께 비교합니다.</p>
           </div>
           <div class="feature">
             <div class="num">03</div>
             <h3>출고 이후 관리</h3>
-            <p>출고가 끝이 아니라 차량 이용 중 필요한 부분까지 계속 챙겨드립니다.</p>
+            <p>출고로 끝나는 상담이 아니라 차량 이용 중 필요한 부분까지 꾸준히 챙겨드립니다.</p>
           </div>
         </div>
       </div>
@@ -364,7 +472,7 @@
       <div class="container">
         <div class="section-head">
           <div class="kicker">Popular Models</div>
-          <h2 class="section-title">최근 문의가 많은<br>벤츠 라인업</h2>
+          <h2 class="section-title">최근 상담이 많은<br>벤츠 라인업</h2>
           <p class="section-desc">실제 구매 가능 조건과 출고 가능 재고는 상담을 통해 개별 안내드립니다.</p>
         </div>
         <div class="model-showcase">
@@ -380,6 +488,26 @@
             <div class="model"><div><h3>GLE</h3><p>패밀리, 법인, 장거리 주행까지 대응</p></div><small>Luxury SUV</small></div>
             <div class="model"><div><h3>CLE / Cabriolet</h3><p>쿠페 감성과 데일리 사용성을 함께</p></div><small>Emotional Drive</small></div>
             <div class="model"><div><h3>EQ Line-up</h3><p>전기차 특화 금융 조건과 빠른 출고 상담</p></div><small>Electric</small></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="consultant">
+      <div class="container">
+        <div class="consultant">
+          <img src="profile.jpg" alt="이충기 차장 프로필">
+          <div>
+            <div class="signature">Certified Mercedes-Benz Consultant</div>
+            <h2>판매보다 중요한 건,<br>고객의 선택이 후회 없도록 돕는 일입니다.</h2>
+            <p>
+              벤츠 모터원 의정부 전시장에서 5년째 고객을 만나고 있습니다. 단순히 조건을 전달하는 상담이 아니라, 고객의 용도와 예산, 출고 시점, 유지 관리까지 고려해 현실적인 선택을 도와드립니다.
+            </p>
+            <div class="btn-row">
+              <a class="btn btn-gold" href="https://open.kakao.com/o/svSqhucd" target="_blank">카카오톡 상담</a>
+              <a class="btn btn-line" href="https://www.instagram.com/benz_all_about" target="_blank">인스타그램</a>
+              <a class="btn btn-line" href="https://www.youtube.com/@all_about_benz" target="_blank">유튜브 채널</a>
+            </div>
           </div>
         </div>
       </div>
@@ -407,7 +535,7 @@
           <p>모델 선택부터 출고 가능 재고, 금융 방식, 사후 관리까지 한 번에 안내드립니다.</p>
           <div class="btn-row" style="justify-content:center;">
             <a class="btn btn-gold" href="https://open.kakao.com/o/svSqhucd" target="_blank">카카오톡으로 문의하기</a>
-            <a class="btn btn-primary" href="tel:010-4615-1658">전화 상담하기</a>
+            <a class="btn btn-light" href="tel:010-4615-1658">전화 상담하기</a>
             <a class="btn btn-line" href="https://www.youtube.com/@all_about_benz" target="_blank">유튜브 보기</a>
           </div>
         </div>
@@ -423,7 +551,7 @@
   <footer>
     <div class="container footer-grid">
       <div><strong>벤츠의 모든 것 | 이충기 차장</strong><br>Mercedes-Benz Motor One Uijeongbu</div>
-      <div>전화: 010-4615-1658<br>Instagram: @benz_all_about<br>YouTube: https://www.youtube.com/@all_about_benz</div>
+      <div>전화: 010-4615-1658<br>Instagram: @benz_all_about<br>YouTube: www.youtube.com/@all_about_benz</div>
     </div>
   </footer>
 </body>
