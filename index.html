@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>벤츠의 모든 것 | 이충기 차장</title>
-  <meta name="description" content="벤츠 의정부 전시장 이충기 차장. 직판제 이후 벤츠 구매전략, 전국 재고 기반 빠른 출고, 출고 이후 관리까지 안내드립니다." />
+  <meta name="description" content="벤츠 의정부 전시장 이충기 차장. 벤츠 구매 상담, 전국 재고 기반 빠른 출고, 직판제 이후 구매전략, 출고 이후 관리까지 안내드립니다." />
   <style>
     @font-face {
       font-family: 'MercedesCustom';
@@ -16,13 +16,11 @@
 
     :root {
       --bg: #050505;
-      --paper: #111111;
-      --paper2: #171717;
+      --panel: rgba(255,255,255,.055);
+      --panel2: rgba(255,255,255,.085);
       --line: rgba(255,255,255,.12);
-      --line2: rgba(255,255,255,.2);
       --text: #f4f1ea;
       --muted: #aaa59b;
-      --muted2: #746f66;
       --gold: #b9a36f;
       --gold2: #ead9a7;
       --silver: #d9d9d9;
@@ -32,10 +30,7 @@
     html { scroll-behavior: smooth; }
     body {
       font-family: 'MercedesCustom', 'Noto Sans KR', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      background:
-        radial-gradient(circle at 78% 6%, rgba(185,163,111,.14), transparent 25%),
-        radial-gradient(circle at 8% 30%, rgba(255,255,255,.05), transparent 22%),
-        var(--bg);
+      background: var(--bg);
       color: var(--text);
       line-height: 1.72;
       word-break: keep-all;
@@ -69,6 +64,7 @@
       align-items: center;
       position: relative;
       isolation: isolate;
+      overflow: hidden;
     }
     .hero:before {
       content: '';
@@ -76,21 +72,17 @@
       inset: 0;
       z-index: -2;
       background:
-        linear-gradient(90deg, rgba(5,5,5,1) 0%, rgba(5,5,5,.91) 42%, rgba(5,5,5,.55) 100%),
-        radial-gradient(circle at 74% 38%, rgba(185,163,111,.17), transparent 25%),
-        radial-gradient(circle at 74% 68%, rgba(255,255,255,.08), transparent 24%);
+        linear-gradient(90deg, rgba(5,5,5,1) 0%, rgba(5,5,5,.88) 40%, rgba(5,5,5,.46) 100%),
+        url('benz-hero.jpg') center right/cover no-repeat;
     }
     .hero:after {
-      content: 'MONTHLY STRATEGY';
+      content: '';
       position: absolute;
-      right: -40px;
-      bottom: 28px;
-      font-size: clamp(54px, 11vw, 150px);
-      font-weight: 950;
-      letter-spacing: -.08em;
-      color: rgba(255,255,255,.035);
-      white-space: nowrap;
+      inset: 0;
       z-index: -1;
+      background:
+        radial-gradient(circle at 74% 38%, rgba(185,163,111,.16), transparent 25%),
+        linear-gradient(to bottom, rgba(5,5,5,.12), rgba(5,5,5,.95));
     }
     .hero-grid { display: grid; grid-template-columns: 1.04fr .96fr; gap: 54px; align-items: center; }
     .issue { display: inline-grid; grid-template-columns: auto auto auto; gap: 12px; align-items: center; margin-bottom: 28px; color: var(--gold2); font-size: 13px; letter-spacing: .14em; text-transform: uppercase; font-weight: 900; }
@@ -128,6 +120,15 @@
     .section-title { font-size: clamp(34px, 4.6vw, 58px); line-height: 1.12; letter-spacing: -.06em; font-weight: 950; margin-bottom: 18px; }
     .section-desc { color: var(--muted); font-size: 18px; max-width: 780px; }
 
+    .photo-strip { display: grid; grid-template-columns: 1.15fr .85fr; gap: 18px; margin-top: 34px; }
+    .photo-main, .photo-side { border-radius: 36px; overflow: hidden; border: 1px solid var(--line); background: #111; min-height: 420px; position: relative; }
+    .photo-main { background: linear-gradient(to top, rgba(5,5,5,.72), rgba(5,5,5,.04)), url('benz-main.jpg') center/cover no-repeat; }
+    .photo-side { display: grid; gap: 18px; background: transparent; border: none; }
+    .photo-small { border-radius: 32px; overflow: hidden; border: 1px solid var(--line); background-size: cover; background-position: center; min-height: 201px; position: relative; }
+    .photo-small.one { background-image: linear-gradient(to top, rgba(5,5,5,.7), transparent), url('benz-detail-1.jpg'); }
+    .photo-small.two { background-image: linear-gradient(to top, rgba(5,5,5,.7), transparent), url('benz-detail-2.jpg'); }
+    .photo-label { position: absolute; left: 24px; bottom: 22px; color: #fff; font-weight: 900; letter-spacing: -.03em; font-size: 22px; }
+
     .market-card { padding: 38px; border-radius: 38px; background: linear-gradient(145deg, rgba(255,255,255,.075), rgba(255,255,255,.025)); border: 1px solid var(--line); }
     .signal-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 26px; }
     .signal { min-height: 250px; padding: 28px; border-radius: 30px; background: rgba(255,255,255,.045); border: 1px solid rgba(255,255,255,.1); position: relative; overflow: hidden; }
@@ -137,10 +138,10 @@
     .signal p { color: var(--muted); font-size: 15px; }
 
     .model-showcase { display: grid; grid-template-columns: 1.05fr .95fr; gap: 20px; align-items: stretch; }
-    .big-card { min-height: 550px; border-radius: 38px; padding: 40px; display: flex; align-items: flex-end; border: 1px solid var(--line); background: linear-gradient(to top, rgba(5,5,5,.95), rgba(5,5,5,.25)), radial-gradient(circle at 72% 32%, rgba(185,163,111,.23), transparent 24%), linear-gradient(135deg, #171717, #050505 68%); overflow: hidden; position: relative; }
-    .big-card:after { content: 'GLE'; position: absolute; right: -6px; top: 40px; font-size: 150px; font-weight: 950; letter-spacing: -.1em; color: rgba(255,255,255,.045); }
-    .big-card h3 { font-size: clamp(38px, 4.6vw, 56px); line-height: 1.05; letter-spacing: -.07em; margin-bottom: 14px; }
-    .big-card p { color: #d6d0c4; max-width: 560px; }
+    .big-card { min-height: 550px; border-radius: 38px; padding: 40px; display: flex; align-items: flex-end; border: 1px solid var(--line); background: linear-gradient(to top, rgba(5,5,5,.95), rgba(5,5,5,.25)), url('benz-gle.jpg') center/cover no-repeat; overflow: hidden; position: relative; }
+    .big-card:after { content: 'GLE'; position: absolute; right: -6px; top: 40px; font-size: 150px; font-weight: 950; letter-spacing: -.1em; color: rgba(255,255,255,.08); }
+    .big-card h3 { font-size: clamp(38px, 4.6vw, 56px); line-height: 1.05; letter-spacing: -.07em; margin-bottom: 14px; position: relative; z-index: 2; }
+    .big-card p { color: #d6d0c4; max-width: 560px; position: relative; z-index: 2; }
     .model-list { display: grid; gap: 14px; }
     .model { min-height: 98px; display: flex; justify-content: space-between; align-items: center; gap: 18px; padding: 24px 26px; border-radius: 30px; background: rgba(255,255,255,.05); border: 1px solid var(--line); transition: .22s; }
     .model:hover { background: rgba(255,255,255,.075); transform: translateX(3px); }
@@ -177,7 +178,7 @@
     @media (max-width: 980px) {
       .nav-menu a:not(.nav-cta) { display: none; }
       .hero { padding-top: 118px; min-height: auto; }
-      .hero-grid, .dash-grid, .section-head, .signal-grid, .model-showcase, .consultant, .process { grid-template-columns: 1fr; }
+      .hero-grid, .dash-grid, .section-head, .signal-grid, .model-showcase, .consultant, .process, .photo-strip { grid-template-columns: 1fr; }
       .profile-frame { min-height: auto; margin-top: 22px; }
       .profile-frame:before { width: 90%; height: 92%; }
       .profile-card { width: min(380px, 100%); }
@@ -187,6 +188,7 @@
       .dash-item:last-child { border-bottom: 0; }
       section { padding: 78px 0; }
       .big-card { min-height: 420px; padding: 30px; }
+      .photo-main { min-height: 360px; }
       .consultant { padding: 22px; }
       .floating { display: flex; }
       footer { padding-bottom: 92px; }
@@ -211,9 +213,9 @@
       <a href="#" class="brand"><strong>BENZ ALL ABOUT</strong><span>Mercedes-Benz Consultant</span></a>
       <nav class="nav-menu">
         <a href="#report">구매전략</a>
+        <a href="#gallery">차량사진</a>
         <a href="#models">추천모델</a>
         <a href="#consultant">컨설턴트</a>
-        <a href="#process">상담과정</a>
         <a class="nav-cta" href="tel:010-4615-1658">상담 연결</a>
       </nav>
     </div>
@@ -223,13 +225,13 @@
     <section class="hero">
       <div class="container hero-grid">
         <div>
-          <div class="issue"><span>Monthly Strategy · Mercedes-Benz</span></div>
-          <h1>벤츠 구매,<br>이제는 전략이<br>필요합니다.</h1>
-          <p class="hero-text">직판제 이후 달라진 벤츠 구매 방식. 전국 재고 기반의 빠른 출고, 고객 상황에 맞는 구매 방식, 그리고 출고 이후 관리까지 이충기 차장이 직접 안내드립니다.</p>
+          <div class="issue"><span>Mercedes-Benz Purchase Consulting</span></div>
+          <h1>벤츠 구매,<br>이제는 조건보다<br>기준이 필요합니다.</h1>
+          <p class="hero-text">벤츠 의정부 전시장 이충기 차장입니다. 차량 선택부터 전국 재고 확인, 구매 방식 비교, 출고 이후 관리까지 고객 입장에서 현실적으로 안내드립니다.</p>
           <div class="report-meta">
-            <span class="chip">Issue · Benz All About</span>
-            <span class="chip">Motor One Uijeongbu</span>
-            <span class="chip">Certified Consultant</span>
+            <span class="chip">벤츠 모터원 의정부</span>
+            <span class="chip">Benz All About</span>
+            <span class="chip">출고 이후 관리</span>
           </div>
           <div class="btn-row">
             <a class="btn btn-gold" href="https://open.kakao.com/o/svSqhucd" target="_blank">카카오톡 상담하기</a>
@@ -259,14 +261,30 @@
     <section id="report">
       <div class="container">
         <div class="section-head">
-          <div class="section-num">01 · Market View</div>
+          <div class="section-num">01 · Purchase View</div>
           <div><h2 class="section-title">직판제 이후,<br>벤츠 구매 기준은 더 명확해졌습니다.</h2><p class="section-desc">가격만 보는 상담이 아니라 재고 확보, 출고 시점, 금융 방식, 차량 선택의 이유, 사후 케어까지 함께 봐야 좋은 선택을 할 수 있습니다.</p></div>
         </div>
         <div class="market-card">
           <div class="signal-grid">
-            <div class="signal"><small>Signal 01</small><h3>전국 재고 기반 상담</h3><p>원하시는 모델, 색상, 옵션, 출고 가능 일정을 전국 재고 기준으로 빠르게 확인해드립니다.</p></div>
-            <div class="signal"><small>Signal 02</small><h3>구매 방식 설계</h3><p>현금, 할부, 리스, 법인 구매까지 고객 상황에 맞춰 부담과 효율을 함께 비교합니다.</p></div>
-            <div class="signal"><small>Signal 03</small><h3>출고 이후 관리</h3><p>출고로 끝나는 상담이 아니라 차량 이용 중 필요한 부분까지 꾸준히 챙겨드립니다.</p></div>
+            <div class="signal"><small>Point 01</small><h3>전국 재고 기반 상담</h3><p>원하시는 모델, 색상, 옵션, 출고 가능 일정을 전국 재고 기준으로 빠르게 확인해드립니다.</p></div>
+            <div class="signal"><small>Point 02</small><h3>구매 방식 설계</h3><p>현금, 할부, 리스, 법인 구매까지 고객 상황에 맞춰 부담과 효율을 함께 비교합니다.</p></div>
+            <div class="signal"><small>Point 03</small><h3>출고 이후 관리</h3><p>출고로 끝나는 상담이 아니라 차량 이용 중 필요한 부분까지 꾸준히 챙겨드립니다.</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="gallery">
+      <div class="container">
+        <div class="section-head">
+          <div class="section-num">02 · Gallery</div>
+          <div><h2 class="section-title">실제 차량 사진으로<br>더 신뢰감 있게 보여드립니다.</h2><p class="section-desc">충기님 블로그와 출고 콘텐츠에 사용하는 벤츠 차량 사진을 넣을 수 있도록 이미지 영역을 구성했습니다.</p></div>
+        </div>
+        <div class="photo-strip">
+          <div class="photo-main"><div class="photo-label">Mercedes-Benz Consulting</div></div>
+          <div class="photo-side">
+            <div class="photo-small one"><div class="photo-label">Interior & Detail</div></div>
+            <div class="photo-small two"><div class="photo-label">Delivery Moment</div></div>
           </div>
         </div>
       </div>
@@ -275,49 +293,9 @@
     <section id="models">
       <div class="container">
         <div class="section-head">
-          <div class="section-num">02 · Top Picks</div>
+          <div class="section-num">03 · Top Picks</div>
           <div><h2 class="section-title">최근 상담이 많은<br>벤츠 라인업</h2><p class="section-desc">실제 구매 가능 조건과 출고 가능 재고는 상담을 통해 개별 안내드립니다.</p></div>
         </div>
         <div class="model-showcase">
           <div class="big-card"><div><h3>GLE 문의가<br>많아지는 이유</h3><p>패밀리 SUV, 법인 차량, X5 비교 고객까지 수요가 겹치며 최근 가장 활발하게 상담되는 라인업입니다.</p></div></div>
-          <div class="model-list">
-            <div class="model"><div><h3>E-Class</h3><p>벤츠 대표 세단, 가장 안정적인 선택지</p></div><small>Premium Sedan</small></div>
-            <div class="model"><div><h3>GLC / GLC Coupe</h3><p>도심형 SUV와 쿠페형 디자인의 균형</p></div><small>Urban SUV</small></div>
-            <div class="model"><div><h3>GLE</h3><p>패밀리, 법인, 장거리 주행까지 대응</p></div><small>Luxury SUV</small></div>
-            <div class="model"><div><h3>CLE / Cabriolet</h3><p>쿠페 감성과 데일리 사용성을 함께</p></div><small>Emotional Drive</small></div>
-            <div class="model"><div><h3>EQ Line-up</h3><p>전기차 특화 금융 조건과 빠른 출고 상담</p></div><small>Electric</small></div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="consultant">
-      <div class="container">
-        <div class="section-head">
-          <div class="section-num">03 · Consultant</div>
-          <div><h2 class="section-title">상담의 기준은<br>결국 사람입니다.</h2><p class="section-desc">차량의 조건만큼 중요한 것은 출고 전후로 고객을 책임 있게 안내하는 세일즈 컨설턴트입니다.</p></div>
-        </div>
-        <div class="consultant">
-          <img src="profile.jpg" alt="이충기 차장 프로필">
-          <div><div class="signature">Certified Mercedes-Benz Consultant</div><h2>판매보다 중요한 건,<br>고객의 선택이 후회 없도록 돕는 일입니다.</h2><p>벤츠 모터원 의정부 전시장에서 5년째 고객을 만나고 있습니다. 단순히 조건을 전달하는 상담이 아니라, 고객의 용도와 예산, 출고 시점, 유지 관리까지 고려해 현실적인 선택을 도와드립니다.</p><div class="btn-row"><a class="btn btn-gold" href="https://open.kakao.com/o/svSqhucd" target="_blank">카카오톡 상담</a><a class="btn btn-line" href="https://www.instagram.com/benz_all_about" target="_blank">인스타그램</a><a class="btn btn-line" href="https://www.youtube.com/@all_about_benz" target="_blank">유튜브 채널</a></div></div>
-        </div>
-      </div>
-    </section>
-
-    <section id="process">
-      <div class="container">
-        <div class="section-head"><div class="section-num">04 · Process</div><div><h2 class="section-title">상담부터 출고까지<br>복잡하지 않게 진행합니다.</h2></div></div>
-        <div class="process"><div class="step"><h3>문의</h3><p>희망 모델, 예산, 구매 방식을 간단히 알려주세요.</p></div><div class="step"><h3>재고 확인</h3><p>전국 재고와 출고 가능 일정을 확인합니다.</p></div><div class="step"><h3>조건 비교</h3><p>현금, 할부, 리스, 법인 조건을 비교합니다.</p></div><div class="step"><h3>출고 관리</h3><p>계약부터 인도까지 세부 절차를 관리합니다.</p></div></div>
-      </div>
-    </section>
-
-    <section class="cta">
-      <div class="container"><div class="cta-box"><h2>벤츠 구매 전,<br>먼저 상담 받아보세요.</h2><p>모델 선택부터 출고 가능 재고, 금융 방식, 사후 관리까지 한 번에 안내드립니다.</p><div class="btn-row" style="justify-content:center;"><a class="btn btn-gold" href="https://open.kakao.com/o/svSqhucd" target="_blank">카카오톡으로 문의하기</a><a class="btn btn-light" href="tel:010-4615-1658">전화 상담하기</a><a class="btn btn-line" href="https://www.youtube.com/@all_about_benz" target="_blank">유튜브 보기</a></div></div></div>
-    </section>
-  </main>
-
-  <div class="floating"><a href="tel:010-4615-1658">전화 상담</a><a href="https://open.kakao.com/o/svSqhucd" target="_blank">카톡 문의</a></div>
-
-  <footer><div class="container footer-grid"><div><strong>벤츠의 모든 것 | 이충기 차장</strong><br>Mercedes-Benz Motor One Uijeongbu</div><div>전화: 010-4615-1658<br>Instagram: @benz_all_about<br>YouTube: www.youtube.com/@all_about_benz</div></div></footer>
-</body>
-</html>
+          <div class="mod
